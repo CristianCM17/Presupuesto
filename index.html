@@ -36,12 +36,24 @@
                 <div class="EgresoValor">
                     <h2>1500</h2>
                 </div>
+                <div class="porcentaje">
+                    <p>20%</p>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="entrada">
-       
+            <select class="tipo">
+                <option value="ingreso">+</option>
+                <option value="egreso">-</option>
+            </select>
+
+            <input class="AgregarDescipcion" type="text" placeholder="Agregar Descripción"></input>
+            <input class="Agregarvalor" type="number" placeholder="Valor"></input>
+            <button class="btnAgregar">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </button>
     </div>
 
     <div class="tablas"> 
