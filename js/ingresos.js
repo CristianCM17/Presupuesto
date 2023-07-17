@@ -1,14 +1,11 @@
 export default class ingresos{
 
     constructor(){
-        this.agregar = null;
         this.ingresos =[];
         this.id=1;
     }
 
-    setAgregar(agregar){
-        this.agregar =agregar;
-    }
+
 
     getIngresos(){
         return this.ingresos;
@@ -25,6 +22,12 @@ export default class ingresos{
        this.ingresos.push(ingreso);
        console.log(this.ingresos)
         return {...ingreso}
+
+    }
+
+    borrarFila(id) {
+        const index= this.ingresos.filter((ingreso) => ingreso.id===id);
+        this.ingresos.splice(index,1);
 
     }
 }

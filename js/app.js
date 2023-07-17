@@ -2,11 +2,12 @@ import Ingresos from '/js/ingresos.js';
 import Agregar from '/js/agregar.js';
 
 document.addEventListener('DOMContentLoaded',function () {
-   
-        const ingresos= new Ingresos();
-        ingresos.setAgregar();
+
         const agregar = new Agregar();
+        const ingresos= new Ingresos();
+        
         agregar.setIngresos(ingresos);
+        
         const btnAgregar=document.getElementById('btnAgregar');
         const AgregarDescipcion= document.getElementById('AgregarDescipcion'); 
         const Agregarvalor= document.getElementById('Agregarvalor');
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded',function () {
         agregar.crearFila(ingreso);
        }
 
-       //agregar.borrarFila();
+       
 
        
       

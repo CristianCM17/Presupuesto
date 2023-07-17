@@ -4,9 +4,7 @@ export default class agregar{
     constructor(){
         this.ingresos=null;
         this.listaIngresos=document.getElementById("listaIngresos");
-        this.id=1;
-        this.idButton=1;
-        
+        this.id=100;
     }
 
     setIngresos(ingresos){
@@ -21,49 +19,58 @@ export default class agregar{
         ingresos.forEach((ingreso) => this.crearFila(ingreso))
       }
 
+      borrarFila(id) {
+        this.ingresos.borrarFila(id);
+        document.getElementById(id).remove(id);
+    
+      
+    }
+
 
 
 
     crearFila(ingreso){
         console.log(ingreso);
-        this.id++;
-        this.idButton++;
-        this.listaIngresos.innerHTML+=`                  
-<div class="elemento limpiarEstilos" id=${ingreso.id}>
-        <div class=" elemento_descripcion">
+        const nuevaFila = document.createElement('div');
+        nuevaFila.classList.add('elemento', 'limpiarEstilos');
+        nuevaFila.id = ingreso.id;
+      
+        nuevaFila.innerHTML = `
+          <div class="elemento_descripcion">
             ${ingreso.descripcion}
-        </div>
-        <div class="derecha limpiarEstilos">
+          </div>
+          <div class="derecha limpiarEstilos">
             <div class="elemento_valor">
-                ${ingreso.valor}
+              ${ingreso.valor}
             </div>
-            <div class="elemento_eliminar" id=${this.id}>
-              
+            <div class="elemento_eliminar">
+              <button class="elemento_eliminar--btn" id="btnEliminar-${ingreso.id}">
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </button>
             </div>
-        </div>
-</div>`
+          </div>`;
+      
+        const botonEliminar = nuevaFila.querySelector(`#btnEliminar-${ingreso.id}`);
+        botonEliminar.addEventListener('click', () => this.borrarFila(ingreso.id));
+      
+        this.listaIngresos.appendChild(nuevaFila);
 
-        var divElementoEliminar = document.getElementById(this.id);
-
+/*
+        var divElementoEliminar = document.getElementsByTagName(this.id);
+        
        
 
         const botonEliminar = document.createElement('button');
         botonEliminar.classList.add('elemento_eliminar--btn');
         botonEliminar.setAttribute('id', this.idButton);
+        botonEliminar.innerHTML='  <ion-icon name="close-circle-outline"></ion-icon>';
+        botonEliminar.onclick = ()=> this.borrarFila(ingreso.id); 
+        console.log(ingreso.id);
         divElementoEliminar.appendChild(botonEliminar);
         
-
-        var icono= document.getElementById(this.idButton);
-
-        if (icono){
-            const icono=document.createElement('ion-icon');
-            icono.setAttribute('name', 'close-circle-outline');
-            botonEliminar.appendChild(icono);
-        }
+*/
       
     }
 
-   borrarFila(id) {
-        document.getElementById(id).remove(id);
-    }
+
 }
