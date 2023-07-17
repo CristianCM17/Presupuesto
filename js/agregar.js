@@ -4,20 +4,21 @@ export default class agregar{
     constructor(){
         this.ingresos=null;
         this.listaIngresos=document.getElementById("listaIngresos");
-        this.id=100;
     }
 
     setIngresos(ingresos){
             this.ingresos=ingresos;
     }
 
-    render() {
+
+
+    /*render() {
         const ingresos = this.ingresos.getIngresos();
        // for (const todo of todos) {
          // this.addrow(todo);
         //}
         ingresos.forEach((ingreso) => this.crearFila(ingreso))
-      }
+      }*/
 
       borrarFila(id) {
         this.ingresos.borrarFila(id);
@@ -54,6 +55,8 @@ export default class agregar{
         botonEliminar.addEventListener('click', () => this.borrarFila(ingreso.id));
       
         this.listaIngresos.appendChild(nuevaFila);
+
+       
 
 /*
         var divElementoEliminar = document.getElementsByTagName(this.id);

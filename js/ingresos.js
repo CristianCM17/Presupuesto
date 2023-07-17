@@ -30,4 +30,6 @@ export default class ingresos{
         this.ingresos.splice(index,1);
 
     }
+
+
 }
