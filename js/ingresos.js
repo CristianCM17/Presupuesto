@@ -31,5 +31,10 @@ export default class ingresos{
 
     }
 
+    sumar() {
+        let sumar = this.ingresos.reduce((acumulador, ingreso) => acumulador + ingreso.valor, 0);
+       return sumar;
+  }
+
 
 }
