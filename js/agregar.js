@@ -1,24 +1,20 @@
+export default class agregar {
+  constructor() {
+    this.ingresos = null;
+    this.egresos = null;
+    this.listaIngresos = document.getElementById("listaIngresos");
+    this.listaEgresos = document.getElementById("listaEgresos");
+  }
 
-export default class agregar{
+  setIngresos(ingresos) {
+    this.ingresos = ingresos;
+  }
 
-    constructor(){
-        this.ingresos=null;
-        this.egresos=null;
-        this.listaIngresos=document.getElementById("listaIngresos");
-        this.listaEgresos=document.getElementById("listaEgresos");
-    }
+  setEgresos(egresos) {
+    this.egresos = egresos;
+  }
 
-    setIngresos(ingresos){
-            this.ingresos=ingresos;
-    }
-
-    setEgresos(egresos){
-      this.egresos=egresos;
-    }
-
-
-
-    /*render() {
+  /*render() {
         const ingresos = this.ingresos.getIngresos();
        // for (const todo of todos) {
          // this.addrow(todo);
@@ -26,30 +22,23 @@ export default class agregar{
         ingresos.forEach((ingreso) => this.crearFila(ingreso))
       }*/
 
-      borrarFilaIngreso(id) {
-
-
-        this.ingresos.borrarFila(id);
-        document.getElementById(id).remove(id);
-    }
-
-       borrarFilaEgreso(id) {
-
-
-         this.egresos.borrarFila(id);
-         document.getElementById(id).remove(id);
+  borrarFilaIngreso(id) {
+    this.ingresos.borrarFila(id);
+    document.getElementById(id).remove(id);
   }
 
+  borrarFilaEgreso(id) {
+    this.egresos.borrarFila(id);
+    document.getElementById(`EgresoFila-${id}`).remove(`EgresoFila-${id}`);
+  }
 
+  crearFilaIngreso(ingreso) {
+    console.log(ingreso);
+    const nuevaFila = document.createElement("div");
+    nuevaFila.classList.add("elemento", "limpiarEstilos");
+    nuevaFila.id = ingreso.id;
 
-
-    crearFilaIngreso(ingreso){
-        console.log(ingreso);
-        const nuevaFila = document.createElement('div');
-        nuevaFila.classList.add('elemento', 'limpiarEstilos');
-        nuevaFila.id = ingreso.id;
-      
-        nuevaFila.innerHTML = `
+    nuevaFila.innerHTML = `
           <div class="elemento_descripcion">
             ${ingreso.descripcion}
           </div>
@@ -63,25 +52,22 @@ export default class agregar{
               </button>
             </div>
           </div>`;
-      
-        const botonEliminar = nuevaFila.querySelector(`#btnEliminar-${ingreso.id}`);
-        botonEliminar.addEventListener('click', () => this.borrarFilaIngreso(ingreso.id));
-      
-        this.listaIngresos.appendChild(nuevaFila);
 
-       
+    const botonEliminar = nuevaFila.querySelector(`#btnEliminar-${ingreso.id}`);
+    botonEliminar.addEventListener("click", () => {
+      this.borrarFilaIngreso(ingreso.id);
+    });
 
+    this.listaIngresos.appendChild(nuevaFila);
+  }
 
-      
-    }
+  crearFilaEgreso(egreso) {
+    console.log(egreso);
+    const nuevaFila = document.createElement("div");
+    nuevaFila.classList.add("elemento", "limpiarEstilos");
+    nuevaFila.id = `EgresoFila-${egreso.id}`;
 
-    crearFilaEgreso(egreso){
-      console.log(egreso);
-      const nuevaFila = document.createElement('div');
-      nuevaFila.classList.add('elemento', 'limpiarEstilos');
-      nuevaFila.id = egreso.id;
-    
-      nuevaFila.innerHTML = `
+    nuevaFila.innerHTML = `
         <div class="elemento_descripcion">
           ${egreso.descripcion}
         </div>
@@ -95,19 +81,17 @@ export default class agregar{
             </button>
           </div>
         </div>`;
-    
-      const botonEliminar = nuevaFila.querySelector(`#btnEliminar-${egreso.id}`);
-      botonEliminar.addEventListener('click', () => this.borrarFilaEgreso(egreso.id));
-    
-      this.listaEgresos.appendChild(nuevaFila);
 
-     
+    const botonEliminar = nuevaFila.querySelector(`#btnEliminar-${egreso.id}`);
+    botonEliminar.addEventListener("click", () => {
+      this.borrarFilaEgreso(egreso.id);
+    });
 
-
-    
+    this.listaEgresos.appendChild(nuevaFila);
   }
 
 
-
-
+  RestarIngresosEgresos(){
+     return this.ingresos.sumar()-this.egresos.sumar();
+  }
 }

@@ -64,11 +64,14 @@ body{
     position: relative;
     height: 50px ;
     align-items: center;
-    justify-content: center;
     gap: 100px;
     width: 100%;
    
     
+}
+
+.EgresoTexto{
+    margin-left: 25px;
 }
 
 .porcentaje {
